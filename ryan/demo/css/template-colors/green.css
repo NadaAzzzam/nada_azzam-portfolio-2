@@ -39,9 +39,7 @@
 
 input:focus,
 textarea:focus,
-button:focus ,
-.btn-email:focus
-{
+button:focus {
   border-bottom: 1px solid #78cc6d;
 }
 
