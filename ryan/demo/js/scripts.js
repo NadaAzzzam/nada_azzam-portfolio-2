@@ -18,7 +18,8 @@ $(window).on("load", function() {
 $(function () {
 	'use strict';
 	
-	
+
+
 	/*
 		Vars
 	*/
@@ -502,6 +503,36 @@ function initMap() {
 		title: 'We are here!'
 	});
 }
+	
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+	console.log(age);
+	document.getElementById('age').innerText=age
+    return age;
+}
+getAge("1998/03/14")
+
+function myWorkExperience(dateString) {
+	var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+	console.log(age);
+	document.getElementById('myExperience').innerText=age
+    return age;
+  
+}
+myWorkExperience("1/10/2019")
+
 
 ( function( $ ) {
 	'use strict';
