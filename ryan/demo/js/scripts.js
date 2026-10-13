@@ -8,7 +8,7 @@
 	Preloader
 */
 
-$(window).on("load", function() {
+$(function() {
 	var preload = $('.preloader');
 	preload.find('.spinner').fadeOut(function(){
 		preload.fadeOut();
@@ -18,7 +18,8 @@ $(window).on("load", function() {
 $(function () {
 	'use strict';
 	
-	
+
+
 	/*
 		Vars
 	*/
@@ -109,16 +110,10 @@ $(function () {
 				});
 			});
 
-			$('.card-inner .card-wrap').slimScroll({destroy: true});
 			$('.card-inner .card-wrap').attr('style', '');
 		}
 		else {
 			$($('.top-menu li.active a').attr('href')).addClass('active');
-			if((!$('.page').hasClass('new-skin')) && (width > 1024)) {
-				$('.card-inner .card-wrap').slimScroll({
-					height: '570px'
-				});
-			}
 		}
 	});
 	
@@ -143,17 +138,6 @@ $(function () {
 	
 	
 	/*
-		slimScroll
-	*/
-	
-	if((!$('.page').hasClass('new-skin')) && (width > 1024)) {
-		$('.card-inner .card-wrap').slimScroll({
-			height: '570px'
-		});
-	}
-	
-	
-	/*
 		Hire Button
 	*/
 	
@@ -163,23 +147,13 @@ $(function () {
 	
 	
 	/*
-		Initialize Portfolio
-	*/
-	var $container = $('.grid-items');
-	$container.imagesLoaded(function() {
-		$container.isotope({
-			percentPosition: true,
-			itemSelector: '.grid-item'
-		});
-	});
-
-
-	/*
 		Filter items on button click
 	*/
 	$('.filter-button-group').on( 'click', '.f_btn', function() {
 		var filterValue = $(this).find('input').val();
-		$container.isotope({ filter: '.'+filterValue });
+		$('.grid-items .grid-item').each(function() {
+			$(this).toggle(filterValue === 'grid-item' || $(this).hasClass(filterValue));
+		});
 		$('.filter-button-group .f_btn').removeClass('active');
 		$(this).addClass('active');
 	});
@@ -188,7 +162,7 @@ $(function () {
 	/*
 		Gallery popup
 	*/
-	if(/\.(?:jpg|jpeg|gif|png)$/i.test($('.gallery-item:first a').attr('href'))){
+	if(/\.(?:jpg|jpeg|gif|png|webp)$/i.test($('.gallery-item:first a').attr('href'))){
 		$('.gallery-item a').magnificPopup({
 			gallery: {
 				enabled: true
@@ -287,116 +261,6 @@ $(function () {
 	
 	
 	/*
-		Validate Contact Form
-	*/
-	
-	$("#cform").validate({
-		ignore: ".ignore",
-		rules: {
-			name: {
-				required: true
-			},
-			message: {
-				required: true
-			},
-			email: {
-				required: true,
-				email: true
-			},
-			hiddenRecaptcha: {
-				required: function () {
-					if (grecaptcha.getResponse() == '') {
-						return true;
-					} else {
-						return false;
-					}
-				}
-			}
-		},
-		success: "valid",
-		submitHandler: function() {
-			$.ajax({
-				url: 'mailer/feedback.php',
-				type: 'post',
-				dataType: 'json',
-				data: 'name='+ $("#cform").find('input[name="name"]').val() + '&email='+ $("#cform").find('input[name="email"]').val() + '&message=' + $("#cform").find('textarea[name="message"]').val(),
-				beforeSend: function() {
-				
-				},
-				complete: function() {
-				
-				},
-				success: function(data) {
-					$('#cform').fadeOut();
-					$('.alert-success').delay(1000).fadeIn();
-				}
-			});
-		}
-	});
-	
-	
-	/*
-		Validate Commect Form
-	*/
-	
-	$("#comment_form").validate({
-		rules: {
-			name: {
-				required: true
-			},
-			message: {
-				required: true
-			}
-		},
-		success: "valid",
-		submitHandler: function() {
-		}
-	});
-	
-	
-	/*
-		Google Maps
-	*/
-	
-	if($('#map').length) {
-		initMap();
-	}
-
-
-	/*
-		Tesimonials Carousel
-	*/
-	var revs_slider = $(".revs-carousel.default-revs .owl-carousel");
-
-	revs_slider.owlCarousel({
-		margin: 0,
-		items: 1,
-		autoplay: false,
-		autoplayTimeout: 5000,
-		autoplayHoverPause: true,
-		loop: true,
-		rewind: false,
-		nav: false,
-		dots: true
-	});
-
-	var rtl_revs_slider = $(".revs-carousel.rtl-revs .owl-carousel");
-
-	rtl_revs_slider.owlCarousel({
-		margin: 0,
-		items: 1,
-		rtl: true,
-		autoplay: false,
-		autoplayTimeout: 5000,
-		autoplayHoverPause: true,
-		loop: true,
-		rewind: false,
-		nav: false,
-		dots: true
-	});
-
-
-	/*
 		New JS
 	*/
 
@@ -411,12 +275,6 @@ $(function () {
 			skills_dotted.find('.percentage .da').css({'width':skills_dotted_w+1});
 		}
 
-		/*
-			Testimonials Carousel On Resize Window
-		*/
-
-		var revs_slider = $(".revs-carousel .owl-carousel");
-		revs_slider.find('.revs-item').css({'max-width':revs_slider.width()});
 	});
 
 	/*
@@ -460,56 +318,3 @@ $(function () {
 	});
 
 });
-
-
-/*
-	Google Map Options
-*/
-
-function initMap() {
-	var myLatlng = new google.maps.LatLng(40.773328,-73.960088); // <- Your latitude and longitude
-	var styles = [
-	{
-		"featureType": "water",
-		"stylers": [{
-			"color": "#d8dee9"
-		},
-		{
-			"visibility": "on"
-		}]
-	},
-	{
-		"featureType": "landscape",
-		"stylers": [{
-			"color": "#eeeeee"
-		}]
-	}]
-
-	var mapOptions = {
-		zoom: 14,
-		center: myLatlng,
-		mapTypeControl: false,
-		disableDefaultUI: true,
-		zoomControl: true,
-		scrollwheel: false,
-		styles: styles
-	}
-	
-	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-	var marker = new google.maps.Marker({
-		position: myLatlng,
-		map: map,
-		title: 'We are here!'
-	});
-}
-
-( function( $ ) {
-	'use strict';
-	
-	// load html
-	$.get("https://bslthemes.com/ryan/bar/bar.html", function (data) {
-        $('body').append(data);
- 		console.log(data);
-    });
-	
-} )( jQuery );
