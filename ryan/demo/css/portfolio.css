@@ -46,11 +46,11 @@
 }
 
 .card-started .profile .social a:hover .social-mark {
-  color: #78cc6d;
+  color: #0f766e;
 }
 
 .card-started .profile .subtitle {
-  color: #3d8535;
+  color: #075e59;
 }
 
 .lnk-icon {
@@ -112,6 +112,178 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Catchy, professional midnight-and-teal visual treatment. */
+:root {
+  --portfolio-navy: #0f2942;
+  --portfolio-teal: #15566a;
+  --portfolio-accent: #0f766e;
+  --portfolio-accent-dark: #075e59;
+  --portfolio-mist: #e5f7f4;
+  --portfolio-highlight: #3fd0c3;
+}
+
+::selection {
+  color: #fff;
+  background: var(--portfolio-accent);
+}
+
+.background.gradient {
+  background:
+    radial-gradient(circle at 14% 16%, rgba(198, 245, 238, 0.34) 0, transparent 29%),
+    radial-gradient(circle at 88% 84%, rgba(63, 208, 195, 0.3) 0, transparent 27%),
+    linear-gradient(135deg, var(--portfolio-navy) 0%, var(--portfolio-teal) 42%, #1d8f88 100%);
+}
+
+.bg-bubbles li {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 28%;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.04));
+  box-shadow: 0 16px 50px rgba(7, 54, 60, 0.14);
+}
+
+.card-started:before {
+  box-shadow: 0 28px 65px rgba(6, 42, 52, 0.24);
+}
+
+.card-started:after {
+  background: linear-gradient(145deg, rgba(63, 208, 195, 0.68), rgba(15, 118, 110, 0.08));
+  border-radius: 18px;
+}
+
+.card-started .profile,
+.card-started .profile .slide {
+  border-radius: 18px 18px 0 0;
+}
+
+.card-started .profile {
+  border-radius: 18px;
+}
+
+.card-inner {
+  border-radius: 0 18px 18px 0;
+  box-shadow: 18px 24px 60px rgba(6, 42, 52, 0.16);
+}
+
+.card-started .profile .title {
+  color: #172b3a;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.card-started .profile .image:before {
+  background: linear-gradient(145deg, var(--portfolio-highlight), var(--portfolio-accent));
+  box-shadow: 0 12px 30px rgba(15, 118, 110, 0.25);
+}
+
+.card-started .profile .image img {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9), 0 14px 35px rgba(15, 41, 66, 0.2);
+}
+
+.card-started .profile .social a {
+  width: 30px;
+  height: 30px;
+  margin: 0 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(15, 118, 110, 0.16);
+  border-radius: 50%;
+  background: var(--portfolio-mist);
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-started .profile .social a:hover {
+  transform: translateY(-3px);
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.2);
+}
+
+.card-started .profile .social a .social-mark,
+.card-started .profile .social a:hover .social-mark {
+  color: var(--portfolio-accent-dark);
+}
+
+.header .top-menu,
+.header .top-menu ul li:first-child a,
+.header .top-menu ul li:last-child a {
+  border-radius: 12px;
+}
+
+.header .top-menu {
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(6, 42, 52, 0.18);
+}
+
+.header .top-menu ul li.active a {
+  background: linear-gradient(135deg, #fff 0%, var(--portfolio-mist) 100%);
+}
+
+.content .title:before {
+  background: linear-gradient(135deg, rgba(63, 208, 195, 0.38), rgba(15, 118, 110, 0.06));
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.12);
+}
+
+.new-skin .service-items .service-item .icon {
+  background: linear-gradient(145deg, var(--portfolio-highlight), var(--portfolio-accent)) !important;
+  box-shadow: 0 10px 24px rgba(15, 118, 110, 0.24);
+}
+
+.new-skin .info-list ul li strong {
+  background: linear-gradient(135deg, var(--portfolio-accent-dark), var(--portfolio-accent));
+  box-shadow: 0 5px 14px rgba(15, 118, 110, 0.16);
+}
+
+.resume-items .resume-item.active .date {
+  color: var(--portfolio-accent-dark);
+  border-color: rgba(15, 118, 110, 0.38);
+  background: var(--portfolio-mist);
+}
+
+.content.works .filter-menu .f_btn.active {
+  padding: 5px 10px;
+  color: var(--portfolio-accent-dark);
+  border-radius: 999px;
+  background: var(--portfolio-mist);
+}
+
+.works .box-item > .image {
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(6, 42, 52, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.works .box-item:hover > .image {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 38px rgba(6, 42, 52, 0.2);
+}
+
+.box-item .image .info:before {
+  background: linear-gradient(135deg, rgba(15, 41, 66, 0.8), rgba(15, 118, 110, 0.74));
+}
+
+.card-started .profile .lnks .lnk {
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.card-started .profile .lnks .lnk:hover {
+  color: var(--portfolio-accent-dark);
+  background: var(--portfolio-mist);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(15, 118, 110, 0.38);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1199px) {
+  .card-inner {
+    border-radius: 18px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
